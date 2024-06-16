@@ -11,8 +11,8 @@ var shell = os.Args[1]
 var user = os.Getenv("USER")
 var host, _ = os.Hostname()
 var dir, _ = os.Getwd()
-var gitBranch = git.GetGitBranch()
-var gitStatus = git.GetGitStatus()
+var gitBranch = git.GetBranch()
+var gitStatus = git.GetStatus()
 
 func getDir() string {
 	var dir, _ = os.Getwd()
@@ -32,7 +32,9 @@ func main() {
 	var prompt = fmt.Sprint(
 		Green("["+user+"@"+host+" ", true),
 		Plain(getDir(), true),
-		Green("]$ ", true),
+		Green("]", true),
+		Cyan(git.GetBranch(), true),
+		Green("$ ", true),
 	)
 
 	fmt.Println(prompt)
