@@ -1,7 +1,39 @@
 package main
 
-import "fmt"
+import (
+	"emerald/git"
+	"fmt"
+	"os"
+	"strings"
+)
+
+var shell = os.Args[1]
+var user = os.Getenv("USER")
+var host, _ = os.Hostname()
+var dir, _ = os.Getwd()
+var gitBranch = git.GetGitBranch()
+var gitStatus = git.GetGitStatus()
+
+func getDir() string {
+	var dir, _ = os.Getwd()
+	var homeDir = os.Getenv("HOME")
+
+	if dir == "/" {
+		return dir
+	}
+
+	var path = strings.Replace(dir, homeDir, "~", 1)
+	var parts = strings.Split(path, "/")
+
+	return parts[len(parts)-1]
+}
 
 func main() {
-  fmt.Println("Hello from emerald!")
+	var prompt = fmt.Sprint(
+		Green("["+user+"@"+host+" ", true),
+		Plain(getDir(), true),
+		Green("]$ ", true),
+	)
+
+	fmt.Println(prompt)
 }
