@@ -1,9 +1,19 @@
 package git
 
 import (
+	"fmt"
 	"os/exec"
 	"strings"
 )
+
+func getBranchName() (string, error) {
+	var cmd = exec.Command("git", "rev-parse", "--abbrev-ref", "HEAD")
+	var res, err = cmd.Output()
+	if err != nil {
+		return "", err
+	}
+	return string(res), nil
+}
 
 func GetStatus() string {
 	var cmd = exec.Command("git", "status", "--porcelain")
@@ -20,14 +30,8 @@ func GetStatus() string {
 }
 
 func GetBranch() string {
-	var cmd = exec.Command("git", "rev-parse", "--abbrev-ref", "HEAD")
-	var res, err = cmd.Output()
-	if err != nil {
-		return ""
-	}
-	var branch = string(res)
-
-	if branch == "" {
+	var branch, err = getBranchName()
+	if err != nil || branch == "" {
 		return ""
 	}
 
