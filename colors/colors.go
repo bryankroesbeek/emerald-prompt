@@ -1,6 +1,11 @@
-package main
+package colors
 
-import "strings"
+import (
+	"os"
+	"strings"
+)
+
+var shell = os.Args[1]
 
 var plainCode = "\033[0m"
 var boldCode = "\033[1m"

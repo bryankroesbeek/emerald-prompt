@@ -1,13 +1,17 @@
 package main
 
 import (
+	"emerald/colors"
 	"emerald/git"
 	"fmt"
 	"os"
 	"strings"
 )
 
-var shell = os.Args[1]
+var green = colors.Green
+var plain = colors.Plain
+var cyan = colors.Cyan
+
 var user = os.Getenv("USER")
 var host, _ = os.Hostname()
 var dir, _ = os.Getwd()
@@ -30,11 +34,11 @@ func getDir() string {
 
 func main() {
 	var prompt = fmt.Sprint(
-		Green("["+user+"@"+host+" ", true),
-		Plain(getDir(), true),
-		Green("]", true),
-		Cyan(gitBranch, true),
-		Green("$ ", true),
+		green("["+user+"@"+host+" ", true),
+		plain(getDir(), true),
+		green("]", true),
+		cyan(gitBranch, true),
+		green("$ ", true),
 	)
 
 	fmt.Println(prompt)
