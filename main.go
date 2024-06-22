@@ -33,7 +33,7 @@ func main() {
 		Green("["+user+"@"+host+" ", true),
 		Plain(getDir(), true),
 		Green("]", true),
-		Cyan(git.GetBranch(), true),
+		Cyan(gitBranch, true),
 		Green("$ ", true),
 	)
 
