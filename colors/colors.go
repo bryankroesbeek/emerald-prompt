@@ -7,10 +7,15 @@ import (
 
 var shell = os.Args[1]
 
-var plainCode = "\033[0m"
-var boldCode = "\033[1m"
-var redCode = "\033[31m"
-var greenCode = "\033[32m"
+const plainCode = "\033[0m"
+const boldCode = "\033[1m"
+const redCode = "\033[31m"
+const greenCode = "\033[32m"
+const yellowCode = "\033[33m"
+const blueCode = "\033[34m"
+const purpleCode = "\033[35m"
+const cyanCode = "\033[36m"
+const whiteCode = "\033[37m"
 
 func Wrap(colorCode string) string {
 	if strings.Contains(shell, "zsh") {
@@ -41,13 +46,21 @@ func Green(text string, bold ...bool) string {
 }
 
 func Yellow(text string, bold ...bool) string {
-	return Color("\033[33m", text, bold[0])
+	return Color(yellowCode, text, bold[0])
 }
 
 func Blue(text string, bold ...bool) string {
-	return Color("\033[34m", text, bold[0])
+	return Color(blueCode, text, bold[0])
+}
+
+func Purple(text string, bold ...bool) string {
+	return Color(purpleCode, text, bold[0])
 }
 
 func Cyan(text string, bold ...bool) string {
-	return Color("\033[36m", text, bold[0])
+	return Color(cyanCode, text, bold[0])
+}
+
+func White(text string, bold ...bool) string {
+	return Color(whiteCode, text, bold[0])
 }
