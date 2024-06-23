@@ -1,7 +1,6 @@
 package git
 
 import (
-	"strings"
 	"emerald/colors"
 	"fmt"
 )
@@ -26,15 +25,6 @@ func getSyncStatus(ahead int, behind int) SyncStatus {
 	}
 
 	return SyncStatus{Equal, GitIconEqual, colors.Cyan}
-}
-
-func GetBranch() string {
-	var branch, err = getBranchName()
-	if err != nil || branch == "" {
-		return ""
-	}
-
-	return " (" + strings.TrimSpace(branch) + ")"
 }
 
 func GetStatus() string {

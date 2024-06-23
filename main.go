@@ -15,7 +15,6 @@ var cyan = colors.Cyan
 var user = os.Getenv("USER")
 var host, _ = os.Hostname()
 var dir, _ = os.Getwd()
-var gitBranch = git.GetBranch()
 
 func getDir() string {
 	var dir, _ = os.Getwd()
@@ -36,7 +35,7 @@ func main() {
 		green("["+user+"@"+host+" ", true),
 		plain(getDir(), true),
 		green("]", true),
-		cyan(gitBranch, true),
+		git.GetStatus(),
 		green("$ ", true),
 	)
 
