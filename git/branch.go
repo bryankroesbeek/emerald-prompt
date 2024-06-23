@@ -2,7 +2,6 @@ package git
 
 import (
 	"errors"
-	"fmt"
 	"os/exec"
 	"slices"
 	"strings"
@@ -14,12 +13,15 @@ func getBranchName() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return string(res), nil
+
+	var branchName = string(res)
+	return strings.Trim(branchName, "\n"), nil
 }
 
 func countCommits(source string, target string) (int, error) {
-	var aheadCmd = exec.Command("git", "rev-list", fmt.Sprint(source, "..", target))
-	var res, err = aheadCmd.Output()
+	var branchRange = source + ".." + target
+	var command = exec.Command("git", "rev-list", branchRange)
+	var res, err = command.Output()
 	if err != nil {
 		return 0, err
 	}
