@@ -3,6 +3,7 @@ package git
 import (
 	"strings"
 	"emerald/colors"
+	"fmt"
 )
 
 type SyncStatus struct {
@@ -34,4 +35,28 @@ func GetBranch() string {
 	}
 
 	return " (" + strings.TrimSpace(branch) + ")"
+}
+
+func GetStatus() string {
+	var branchName, err = getBranchName()
+	if err != nil || branchName == "" {
+		return ""
+	}
+
+	var commitsAhead, commitsBehind, branchErr = getCommitCounts(branchName)
+	if branchErr != nil {
+		return ""
+	}
+
+	var gitSync = getSyncStatus(commitsAhead, commitsBehind)
+	var start = gitSync.color(" (", true)
+	var branch = gitSync.color(branchName+" ", true)
+	var status = gitSync.color(gitSync.icon, true)
+	var end = gitSync.color(")", true)
+	return fmt.Sprint(
+		start,
+		branch,
+		status,
+		end,
+	)
 }
