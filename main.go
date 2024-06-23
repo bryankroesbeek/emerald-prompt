@@ -16,7 +16,6 @@ var user = os.Getenv("USER")
 var host, _ = os.Hostname()
 var dir, _ = os.Getwd()
 var gitBranch = git.GetBranch()
-var gitStatus = git.GetStatus()
 
 func getDir() string {
 	var dir, _ = os.Getwd()

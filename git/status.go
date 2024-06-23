@@ -7,7 +7,7 @@ import (
 )
 
 // BUG: When a rename is in the status, it will show up as both a tracked and untracked change
-func GetStatus() string {
+func getStatus() string {
 	var cmd = exec.Command("git", "status", "-z")
 	var res, err = cmd.Output()
 	if err != nil {
