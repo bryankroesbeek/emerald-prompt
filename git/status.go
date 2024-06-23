@@ -1,29 +1,23 @@
 package git
 
 import (
-	"fmt"
 	"os/exec"
 	"strings"
 )
 
 // BUG: When a rename is in the status, it will show up as both a tracked and untracked change
-func getStatus() string {
+func getLocalCounts() (int, int, error) {
 	var cmd = exec.Command("git", "status", "-z")
 	var res, err = cmd.Output()
 	if err != nil {
-		return ""
+		return 0, 0, err
 	}
 
 	var changesStr = string(res)
-	var changes = strings.Split(changesStr, "\000")
+	var changes StringSlice = strings.Split(changesStr, "\000")
+	changes = changes.filterEmpty()
 	var countI, countW = countChanges(changes)
-	fmt.Println(countI, countW)
-
-	if len(res) == 0 {
-		return ":)"
-	}
-
-	return ":("
+	return countI, countW, nil
 }
 
 func countChanges(changes []string) (int, int) {
