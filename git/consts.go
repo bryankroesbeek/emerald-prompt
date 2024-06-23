@@ -1,6 +1,15 @@
 package git
 
-const equal string = "≡"
-const ahead string = "↑"
-const behind string = "↓"
-const diverged string = "↕"
+type GitStatus int
+
+const (
+	Equal GitStatus = iota
+	Ahead
+	Behind
+	Diverged
+)
+
+const GitIconEqual string = "≡"
+const GitIconAhead string = "↑"
+const GitIconBehind string = "↓"
+const GitIconDiverged string = "↕"
