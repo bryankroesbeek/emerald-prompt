@@ -35,11 +35,11 @@ func countCommits(source string, target string) (int, error) {
 func getCommitCounts(branchName string) (int, int, error) {
 	var origin = "origin/" + branchName
 
-	var commitsAhead, aErr = countCommits("HEAD", origin)
-	var commitsBehind, bErr = countCommits(origin, "HEAD")
+	var commitsAhead, aErr = countCommits(origin, "HEAD")
+	var commitsBehind, bErr = countCommits("HEAD", origin)
 	if aErr != nil || bErr != nil {
 		return 0, 0, errors.New("Unable to get commits")
 	}
 
-	return commitsBehind, commitsAhead, nil
+	return commitsAhead, commitsBehind, nil
 }
