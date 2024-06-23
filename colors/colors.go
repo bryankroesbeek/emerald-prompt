@@ -33,34 +33,34 @@ func Color(colorCode string, text string, bold bool) string {
 	}
 }
 
-func Plain(text string, bold ...bool) string {
-	return Color(plainCode, text, bold[0])
+func Plain(text string, bold bool) string {
+	return Color(plainCode, text, bold)
 }
 
-func Red(text string, bold ...bool) string {
-	return Color(redCode, text, bold[0])
+func Red(text string, bold bool) string {
+	return Color(redCode, text, bold)
 }
 
-func Green(text string, bold ...bool) string {
-	return Color(greenCode, text, bold[0])
+func Green(text string, bold bool) string {
+	return Color(greenCode, text, bold)
 }
 
-func Yellow(text string, bold ...bool) string {
-	return Color(yellowCode, text, bold[0])
+func Yellow(text string, bold bool) string {
+	return Color(yellowCode, text, bold)
 }
 
-func Blue(text string, bold ...bool) string {
-	return Color(blueCode, text, bold[0])
+func Blue(text string, bold bool) string {
+	return Color(blueCode, text, bold)
 }
 
-func Purple(text string, bold ...bool) string {
-	return Color(purpleCode, text, bold[0])
+func Purple(text string, bold bool) string {
+	return Color(purpleCode, text, bold)
 }
 
-func Cyan(text string, bold ...bool) string {
-	return Color(cyanCode, text, bold[0])
+func Cyan(text string, bold bool) string {
+	return Color(cyanCode, text, bold)
 }
 
-func White(text string, bold ...bool) string {
-	return Color(whiteCode, text, bold[0])
+func White(text string, bold bool) string {
+	return Color(whiteCode, text, bold)
 }
